@@ -1,0 +1,57 @@
+
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+    "username":"avi",
+    "email":"avi@gmail.com",
+    "password":"1234",
+    "role":"USER"
+}
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "avi@gmail.com",
+  "password": "1234"
+}
+
+###
+POST http://localhost:8080/api/feedback
+Content-Type: application/json
+
+{
+  "subject":"Product Review",
+  "message":"Very good product",
+  "status":"Pending"
+
+}
+###
+GET http://localhost:8080/api/feedback
+###
+GET http://localhost:8080/api/feedback/999
+###
+PUT http://localhost:8080/api/feedback/2
+Content-Type: application/json
+
+{
+  "subject": "Updated Review",
+  "message": "Product is Excellent",
+  "status": "Approved"
+}
+###
+DELETE http://localhost:8080/api/feedback/4
+###
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "",
+  "email": "",
+  "password": "",
+  "role": "USER"
+}
+###
+http://localhost:8080/admin
