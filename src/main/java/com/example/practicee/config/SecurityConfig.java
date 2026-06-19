@@ -36,8 +36,18 @@ public class SecurityConfig {
 
                         ).permitAll()
                         .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login-user")
+                        .defaultSuccessUrl("/home", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login")
+                                .permitAll()
                 );
-                //.httpBasic(Customizer.withDefaults());
         return http.build();
 
     }
