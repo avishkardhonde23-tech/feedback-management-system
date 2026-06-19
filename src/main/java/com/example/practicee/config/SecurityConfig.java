@@ -33,6 +33,7 @@ public class SecurityConfig {
                                 "/update/**",
                                 "/delete-feedback/**",
                                 "/logout"
+
                         ).permitAll()
                         .anyRequest().authenticated()
                 );

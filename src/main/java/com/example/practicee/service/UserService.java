@@ -12,6 +12,10 @@ public class UserService {
     private UserRepository uRepo;
 
     public UserEntity registerUser(UserEntity user){
+        if(uRepo.findByEmail(user.getEmail()).isPresent()){
+            throw new RuntimeException("Email already registered");
+        }
+        user.setRole("USER");
         return uRepo.save(user);
     }
 

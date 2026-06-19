@@ -22,11 +22,17 @@ public class PageController {
     @Autowired
     private UserService userService;
     @PostMapping("/register-user")
-    public String registerUser(@ModelAttribute UserEntity user){
-        userService.registerUser(user);
-        return "redirect:/login";
-    }
+    public String registerUser(@ModelAttribute UserEntity user, Model model){
 
+        try{
+            userService.registerUser(user);
+            return "redirect:/login";
+        }
+        catch(RuntimeException e){
+            model.addAttribute("error", e.getMessage());
+            return "register";
+        }
+    }
     @GetMapping("/login")
     public String loginpage(){
         return "login";
@@ -39,8 +45,7 @@ public class PageController {
 
         UserEntity user = userService.login(email,password);
         session.setAttribute("loggedInUser",user);
-
-        if(user.getRole().equalsIgnoreCase("ADMIN")){
+            if ("ADMIN".equalsIgnoreCase(user.getRole())) {
             return "redirect:/admin";
         }
 
