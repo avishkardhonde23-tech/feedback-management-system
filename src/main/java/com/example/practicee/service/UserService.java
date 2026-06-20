@@ -1,5 +1,4 @@
 package com.example.practicee.service;
-
 import com.example.practicee.entity.UserEntity;
 import com.example.practicee.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class UserService {
     public UserEntity login(String email,String password ) {
         UserEntity user = uRepo.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Invalid Password");
         }
         return user;
