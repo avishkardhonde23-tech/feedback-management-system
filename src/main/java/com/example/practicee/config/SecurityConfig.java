@@ -43,8 +43,7 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .loginProcessingUrl("/login-user")
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/home", true)
-                        .permitAll()
+                        .defaultSuccessUrl("/feedbacks", true)
                 )
                 .logout(logout -> logout
                                 .logoutUrl("/logout")
